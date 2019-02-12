@@ -1,20 +1,22 @@
-import express from "express";
-import { ApolloServer } from "apollo-server-express";
+import { GraphQLServer } from "graphql-yoga";
 
-import typeDefs from "./api/schema";
-import resolvers from "./api/resolvers";
+const typeDefs = `
+type Query {
+  info: String!
+}
+`;
 
-const app = express();
+const resolvers = {
+  Query: {
+    info: () => "Pokemon API graphQL implementation"
+  }
+};
 
-const PORT = 4000;
-
-const SERVER = new ApolloServer({
+const server = new GraphQLServer({
   typeDefs,
   resolvers
 });
 
-SERVER.applyMiddleware({ app });
-
-app.listen(PORT, () =>
-  console.log(`🚀 GraphQL playground is running at http://localhost:4000`)
+server.start(() =>
+  console.log("Server up and running on http://localhost:4000 🚀")
 );
