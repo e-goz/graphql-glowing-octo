@@ -1,16 +1,6 @@
 import { GraphQLServer } from "graphql-yoga";
-
-const typeDefs = `
-type Query {
-  info: String!
-}
-`;
-
-const resolvers = {
-  Query: {
-    info: () => "Pokemon API graphQL implementation"
-  }
-};
+import resolvers from "./api/resolvers.js";
+import typeDefs from "./api/schema.js";
 
 const server = new GraphQLServer({
   typeDefs,

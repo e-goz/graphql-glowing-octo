@@ -1,27 +1,33 @@
-const defaultData = [
+const dummyPokemons = [
   {
-    id: 1,
-    name: "Luke SkyWaler",
-    gender: "male",
-    homeworld: "Tattoine"
+    id: 0,
+    name: "Psyduck",
+    height: 154
   },
   {
-    id: 2,
-    name: "C-3PO",
-    gender: "bot",
-    homeworld: "Tattoine"
+    id: 1,
+    name: "Ivysaur",
+    height: 32
   }
 ];
 
+let idCount = dummyPokemons.length;
+
 const resolvers = {
   Query: {
-    allPeople: () => {
-      return defaultData;
-    },
-    person: (root, { id }) => {
-      return defaultData.filter(character => {
-        return (character.id = id);
-      })[0];
+    info: () => "Pokemon API graphQL implementation",
+    pokemons: () => dummyPokemons,
+    pokemon: (parent, args) => dummyPokemons[args.id]
+  },
+  Mutation: {
+    newPokemon: (parent, args) => {
+      const pokemon = {
+        id: idCount++,
+        name: args.name,
+        height: args.height
+      };
+      dummyPokemons.push(pokemon);
+      return pokemon;
     }
   }
 };

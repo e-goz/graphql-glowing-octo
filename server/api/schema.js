@@ -1,16 +1,19 @@
-import { gql } from "apollo-server-express";
+const typeDefs = `
+type Query {
+  info: String!,
+  pokemons: [Pokemon]!,
+  pokemon(id: ID!) : Pokemon!
+}
 
-const typeDefs = gql`
-  type Person {
-    id: Int
-    name: String
-    gender: String
-    homeworld: String
-  }
-  type Query {
-    allPeople: [Person]
-    person(id: Int!): Person
-  }
+type Mutation {
+  newPokemon(name: String!, height: Int!): Pokemon!
+}
+
+type Pokemon {
+  id: ID!,
+  name: String!,
+  height: Int!
+}
 `;
 
 export default typeDefs;
