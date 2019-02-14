@@ -1,0 +1,6 @@
+type Pokemon {
+  id: ID! @unique,
+  createdAt: DateTime!
+  name: String!,
+  height: Int!
+}
