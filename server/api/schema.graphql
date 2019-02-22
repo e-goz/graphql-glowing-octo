@@ -1,4 +1,3 @@
-const typeDefs = `
 type Query {
   info: String!,
   pokemons: [Pokemon]!,
@@ -14,6 +13,3 @@ type Pokemon {
   name: String!,
   height: Int!
 }
-`;
-
-export default typeDefs;
