@@ -5,11 +5,26 @@ type Query {
 }
 
 type Mutation {
-  newPokemon(name: String!, height: Int!): Pokemon!
+  newPokemon(name: String!, height: Int!): Pokemon!,
+  signup(email: String!, password: String!, name: String!): AuthPayload,
+  login(email: String!, password: String!): AuthPayload
 }
 
 type Pokemon {
   id: ID!,
   name: String!,
-  height: Int!
+  height: Int!,
+  trainer: User
+}
+
+type AuthPayload {
+  token: String,
+  user: User
+}
+
+type User {
+  id: ID!,
+  name: String!,
+  email: String!,
+  ownedPokemons: [Pokemon!]!
 }

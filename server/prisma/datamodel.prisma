@@ -2,5 +2,14 @@ type Pokemon {
   id: ID! @unique,
   createdAt: DateTime!
   name: String!,
-  height: Int!
+  height: Int!,
+  trainer: User
+}
+
+type User {
+  id: ID! @unique,
+  name: String!
+  email: String! @unique
+  password: String!
+  ownedPokemons: [Pokemon!]!
 }
